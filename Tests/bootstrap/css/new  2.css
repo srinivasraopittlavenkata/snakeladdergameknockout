@@ -1,0 +1,106 @@
+  .board {
+        text-align: center;
+       height: 300px;
+        width: 300px;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 10px;
+    }
+
+    .label-font {
+        font-size: 7.5px;
+    }
+
+    .label-style {
+        float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .badge-font {
+        font-size: 10px;
+    }
+
+    .c1,
+    .c2 {
+        width: 33%;
+    }
+
+    .c3 {
+        width: 34%;
+    }
+
+    .yellow {
+        width: 10px;
+        height: 10px;
+        background: mediumblue;
+        padding: 0.1em;
+    }
+
+    .red {
+        width: 10px;
+        height: 10px;
+        background: red;
+        padding: 0.1em;
+    }
+
+    .variance {
+        font-size: small;
+        color: blue;
+        font-style: italic;
+    }
+
+    .square {
+        width: 80px;
+        height: 25px;
+        text-align: center;
+        display: inline-block;
+        border: 1px solid #e3e3e3;
+        background: #b0e0e6;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .snakeSquare {
+        background: lightcoral;
+        border-style: dashed;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    .ladderSquare {
+        background: greenyellow;
+        border-style: solid;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    .ladder-legend {
+        background: greenyellow;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        height: 10px;
+        width: 10px;
+        float: right;
+        margin: 5px;
+    }
+
+    .snake-legend {
+        background: lightcoral;
+        border-style: dashed;
+        border-color: black;
+        border-width: 1px;
+        height: 10px;
+        width: 10px;
+        float: right;
+        margin: 5px;
+    }
+
+    .hide {
+        display: none;
+    }

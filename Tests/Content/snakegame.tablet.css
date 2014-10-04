@@ -1,0 +1,117 @@
+﻿/* iPads (portrait and landscape) ----------- */
+
+    .body {
+        background: rosybrown;
+    }
+
+    .board {
+        text-align: center;
+        height: 700px;
+        width: 700px;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .label-font {
+        font-size: 10px;
+    }
+
+    .label-style {
+        float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .badge-font {
+        font-size: 8px;
+    }
+
+    .c1,
+    .c2 {
+        width: 33%;
+    }
+
+    .c3 {
+        width: 34%;
+    }
+
+    .yellow {
+        width: 8px;
+        height: 8px;
+        background: mediumblue;
+        padding: 0.1em;
+    }
+
+    .red {
+        width: 8px;
+        height: 8px;
+        background: red;
+        padding: 0.1em;
+    }
+
+    .variance {
+        font-size: small;
+        color: blue;
+        font-style: italic;
+    }
+
+    .square {
+        width: 60px;
+        height: 20px;
+        text-align: center;
+        display: inline-block;
+        border: 1px solid #e3e3e3;
+        background: #b0e0e6;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .snakeSquare {
+        background: lightcoral;
+        border-style: dashed;
+        border-color: black;
+        border-width: 1.5px;
+    }
+
+    .ladderSquare {
+        background: greenyellow;
+        border-style: solid;
+        border-color: black;
+        border-width: 1.5px;
+    }
+
+    .ladder-legend {
+        background: greenyellow;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        height: 8px;
+        width: 8px;
+        float: right;
+        margin: 5px;
+    }
+
+    .snake-legend {
+        background: lightcoral;
+        border-style: dashed;
+        border-color: black;
+        border-width: 1px;
+        height: 8px;
+        width: 8px;
+        float: right;
+        margin: 5px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .ladderStyle {
+        font-size:6px;
+    }
+

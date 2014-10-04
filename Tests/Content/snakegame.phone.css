@@ -1,0 +1,116 @@
+﻿
+/* Smartphones (portrait and landscape) ----------- */
+
+.board {
+    text-align: center;
+    height: 300px;
+    width: 300px;
+    padding: 0;
+}
+
+.title {
+    font-style: italic;
+    font-size: 10px;
+}
+
+.label-font {
+    font-size: 7.5px;
+}
+
+.label-style {
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.badge-font {
+    font-size: 5px;
+}
+
+.c1,
+.c2 {
+    width: 33%;
+}
+
+.c3 {
+    width: 34%;
+}
+
+.yellow {
+    width: 5px;
+    height: 5px;
+    background: mediumblue;
+    padding: 0.1em;
+}
+
+.red {
+    width: 5px;
+    height: 5px;
+    background: red;
+    padding: 0.1em;
+}
+
+.variance {
+    font-size: small;
+    color: blue;
+    font-style: italic;
+}
+
+.square {
+    width: 40px;
+    height: 20px;
+    font-size: 7px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #e3e3e3;
+    background: #8fbc8f;
+}
+
+.center {
+    text-align: center;
+}
+
+.snakeSquare {
+    background: lightcoral;
+    border-style: dashed;
+    border-color: black;
+    border-width: 1px;
+}
+
+.ladderSquare {
+    background: greenyellow;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.ladder-legend {
+    background: greenyellow;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    height: 5px;
+    width: 5px;
+    float: right;
+    margin: 2px;
+}
+
+.snake-legend {
+    background: lightcoral;
+    border-style: dashed;
+    border-color: black;
+    border-width: 1px;
+    height: 5px;
+    width: 5px;
+    float: right;
+    margin: 2px;
+}
+
+.hide {
+    display: none;
+}
+
+
+.ladderStyle {
+    font-size: 5px;
+}

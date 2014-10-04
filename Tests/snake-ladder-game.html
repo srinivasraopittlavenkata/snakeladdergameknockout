@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS media query on a link element -->
+    <link rel="stylesheet" media="(max-width: 600px)" href="Content/snakegame.phone.css" />
+    <link rel="stylesheet" media="(min-width: 600px)" href="Content/snakegame.tablet.css">
+    <link rel="stylesheet" media="(min-width: 1224px)" href="Content/snakegame.pc.css" />
+    <!--<link rel="stylesheet" media="(max-width: 768px)" href="Content/snakegame.tablet.css" />-->
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/knockout-3.2.0.js"></script>
+    <script src="Scripts/sl/snakegame-common.js"></script>
+    <script src="Scripts/sl/snakegame-entity-models.js"></script>
+    <script src="Scripts/sl/snakegame-ko-entity-models.js"></script>
+    <script src="Scripts/sl/snakegame-ko-contollers.js"></script>
+    <title>Snake and Ladder Game</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var controller = null;
+            try {
+
+                // CONFIGURATION
+                // 1. CONSTRAINTS FOR THE GAME.
+                // a constaint is either a ladder or a snake, both are instances of same class 'Constaint'.
+                // adding two ladders and two snakes.
+                var constraints = [];
+
+                var snake1 = new Exp.AppModels.Constraint(60, 6, true);
+                var snake2 = new Exp.AppModels.Constraint(45, 19, true);
+                var ladder1 = new Exp.AppModels.Constraint(35, 96, false);
+                var ladder2 = new Exp.AppModels.Constraint(78, 85, false);
+                constraints.push(snake1);
+                constraints.push(snake2);
+                constraints.push(ladder1);
+                constraints.push(ladder2);
+
+                // 2. PLAYERS FOR THE GAME.
+                // A player has a name, id, no.of tries, no. of jumps(ladders), no. of bites (snakes) and moves( a list of move form one pos to other).
+                // adding two players.
+                var players = [];
+
+                var player1 = new Exp.AppModels.Player('player 1', 1, 'blue');
+                var player2 = new Exp.AppModels.Player('player 2', 2, 'yellow');
+                players.push(player1);
+                players.push(player2);
+
+                // 3. CONTROLLER (a knockoutjs framework controller object created for the game)
+                // SnakeLadderGameController is responsible for the entire game, it has following significant specifications
+                // Actions
+                // a. StartGame - sets the current player and initiates the game.
+                // b. RollDice - player clicks on the dice button to move, roll dice does the movement of the player.
+                controller = new Exp.KonckoutControllers.SnakeLadderGameController(100, constraints, players);
+
+                // 4. APPLY KNOCKOUT BINDINGS to VIEW or UI.
+                var snakegrid = $("#snakegame")[0];
+                ko.cleanNode(snakegrid);
+                ko.applyBindings(controller, snakegrid);
+
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="snakegame" class="container-fluid center">
+        <!--header-->
+        <div class="row">
+            <div class="col-md-8">
+                <h3><span class="title" data-bind="text: $root.statusMessage"></span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 ">
+                <a class="btn btn-primary btn-sm" data-bind="click: $root.startGame">start game</a>
+                <a class="btn btn-success btn-sm" data-bind="click: $root.rollDice, enable: $root.gameStarted,">dice</a>
+            </div>
+
+        </div>
+        <!--legend-->
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3 label-font">
+                <div data-bind="template: { name: 'playerDetails', foreach: $data.players}"></div>
+                <div>
+                    <div class="label-style">
+                        <span style="float: left">snake</span>
+                        <span style="float: left">:</span>
+                        <div class="snake-legend">
+                        </div>
+                    </div>
+                    <div class="label-style">
+                        <span style="float: left">ladder</span>
+                        <span style="float: left">:</span>
+                        <div class="ladder-legend">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 ">
+                <h5><span class="badge badge-font" data-bind="text: $root.lastDiceMessage"></span></h5>
+            </div>
+        </div>
+        <!--board-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 ">
+                <ul id="snakeBoard" class="board" data-bind="template: { name: 'squarTemplate', foreach: sqaures }"></ul>
+            </div>
+        </div>
+    </div>
+    <!--knokcout templates-->
+    <script type="text/html" id="playertemplate">
+        <li>
+            name: <span data-bind="text: $data.name"></span>
+            id: <span data-bind="text: $data.id"></span>
+            trials: <span data-bind="text: $data.trials"></span>
+            bites: <span data-bind="text: $data.bites"></span>
+            jumps: <span data-bind="text: $data.jumps"></span>
+            <table data-bind="foreach: $data.moves">
+                <tr>
+                    <td data-bind="text:source"></td>
+                    <td>--</td>
+                    <td data-bind="text:destination"></td>>
+                </tr>
+            </table>
+        </li>
+    </script>
+    <script type="text/html" id="squarTemplate">
+        <li data-bind="attr: { class: $data.constraintVariance() > 0 ? 'square ladderSquare' : $data.constraintVariance() == 0 ? 'square':  'square snakeSquare' }">
+            <table>
+                <tr>
+                    <td class="c1">
+                        <table data-bind="template: { name: 'playerTempl', foreach: $data.players}"></table>
+                    </td>
+                    <td class="c3"><span data-bind="text: $data.index"></span></td>
+                    <td class="c2" data-bind="attr: { class: $data.constraintVariance() > 0 ? 'ladderStyle' : $data.constraintVariance() == 0 ? 'hide':  'ladderStyle' }">
+                        <span>-></span>
+                        <abbr data-bind="text: $data.constraintVariance"></abbr>
+                    </td>
+                </tr>
+
+            </table>
+        </li>
+    </script>
+    <script type="text/html" id="playerTempl">
+        <tr>
+            <td data-bind="attr: { class: $data.color() == 'yellow' ? 'yellow' : 'red' }"></td>
+        </tr>
+    </script>
+    <script type="text/html" id="playerDetails">
+        <div style="float: left;margin-right: 20px; margin-left: 10px">
+            <span style="float: left" data-bind="text: $data.name"></span>
+            <span style="float: left">:</span>
+            <div style="float: right; margin: 5px" data-bind="attr: { class: $data.color() == 'yellow' ? 'yellow' : 'red' }">
+
+            </div>
+
+        </div>
+    </script>
+</body>
+</html>

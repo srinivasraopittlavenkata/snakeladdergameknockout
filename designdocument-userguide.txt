@@ -1,0 +1,63 @@
+Snake and Ladder Game
+Desgin:
+- designed this game using 'knockoutjs', 'bootstrap', custom sytlesheets(for responsiveness) and 'qunit' on the lines of 'Responsive UI' design pattern.
+- knockoutjs- is used as the MVVM framework which is used for rendering view and handling the actions on the view.
+- bootstrap.css- is used as the baseline for rendering responsiveness for the game.
+- qunit.js- is used for unit testing the js and html.
+- custom sytlesheets- are developed for acheiving responsive design using media queries.
+
+Design Internals:
+a) Entites - game is composition of Players, Constaints and SQuares.
+	Player- is a object which has (name, 
+			index - curren position on board,
+			jumps- no. of ladders encountered,
+			bites- no. of snakes encountered,
+			moves- no of moves so far).
+	Square- is a object which has, 
+			index- a no. indicating the position on the board
+			players- no. of players on the square this is set when player rolls dice and reaches this square
+			constraint- either a snake or a ladder which is set on this square
+	Constraint- it defines a snake or a ladder, which has a variance which is added to the player moves when player lands on a square with a constraint.
+b) Phases- game has following phases
+	Initialize: during this phase based on 'players', 'constraints' and 'boardsize' game is built.
+		Inputs
+			a) Players List- game accepts a list of players to start with.
+			b) Constraints List- a list of object which define start and end position to define a snake or ladder
+			c) Board size- number of sqaures on the board.
+	Game Execution: during this phase player starts playing the game by rolling dice.
+		Events
+			a) Roll Dice- whenver player rolls a dice, a random number is picked from 1 to 6, and target is calculated based on the constraint, ans player index is set.
+			b) Win- whenever a player index reaches the 'boardsize', game is stopped and winner is anncounced.
+c) Technical Details
+	Scripts-
+			a) snakegame-entity-models.js - it has all the plain definitions of the entities used in the game like player, square, constraint etc., there are just data objects.
+			b) snakegame-ko-entity-models.js- it has all the used defined konckout specific objects which are bindable called view models in konckout terminology.
+			c) snakegame-ko-contollers.js- it has the used defined konckoout controllers for rendering view and managing the actions of the game.
+			d) snakegame-common.js- has commmonly used js code and data strucutures.
+	Unit Tests
+			a) snakegame.unittests.js- it has the unit tests written in 'qunit.js' to test the scripts and actions.
+d) Responsiveness
+	HTML- bootstrap layout is used in conjunction with knckout templating engine for rendering the html
+	Mobile Responsiveness- multiple stylesheets have been defined for 'Phone', 'Table', and 'PC' for rendering using Media queries.
+	snakegame.pc.css - PC stylesheet where the styles are aligned for a wider screen.
+	snakegame.phone.css- phone stylesheet where the styles are aligned for a mobile screen.
+	snakegame.tablet.css - tablet stylesheet where the styles are aligned for a wider mobile screen.
+e) View
+   Home: SnakeGameHome.html (page gives options to start game or run automated unit-tests and see results)
+   Game: snake-ladder-game.html (page where we can play the game)
+   UnitTests: snakegmae-unittests-qunit.html (page loads qunit tests)
+   
+Sample Game Features:
+- game allows two users to play, board compromises numbers from 1 to 100, on starting the game players can roll the dice to move further.
+- game does'nt show snakes and ladders images, rather than different colors with indexing are used to represent the snake and ladder.
+
+How to Play
+- Click 'start game'
+- Now player should click 'roll dice' to move in the game.
+
+TODO:
+- scripts and sytles are not bundled or minified.
+- most of the focus of this design was intented to overall design, UI might not seem like a snake and ladder game :) but can be upgraded easily with better stylesheets.
+
+Documentation:
+-scripts are having comments for details.

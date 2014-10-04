@@ -1,0 +1,6 @@
+app-scripts: ..sources\scripts\sl
+app-styles: ..sources\content\css
+app-html:
+   Home: SnakeGameHome.html (page gives options to start game or run automated unit-tests and see results)
+   Game: snake-ladder-game.html (page where we can play the game)
+   UnitTests: snakegmae-unittests-qunit.html (page loads qunit tests)
